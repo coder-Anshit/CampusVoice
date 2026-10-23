@@ -564,10 +564,11 @@ def create_app():
         if origin.strip()
     ]
 
+
     CORS(
         app,
         resources={
-            r"/api/*": {
+            r"/*": {
                 "origins": configured_origins,
                 "methods": [
                     "GET",
@@ -583,8 +584,9 @@ def create_app():
                 ],
                 "supports_credentials": True,
             }
-        }
+        },
     )
+
 
 
     app.register_blueprint(issues_bp)
