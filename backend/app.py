@@ -559,7 +559,7 @@ def create_app():
         origin.strip()
         for origin in os.getenv(
             "CORS_ORIGINS",
-            "http://localhost:3000,http://localhost:3001,http://127.0.0.1:3000,http://127.0.0.1:3001,https://duplicate-break-standing-looking.trycloudflare.com",
+            "http://localhost:3000,http://localhost:3001,http://127.0.0.1:3000,http://127.0.0.1:3001,https://campusvoice-frontend-7pb8.onrender.com",
         ).split(",")
         if origin.strip()
     ]
