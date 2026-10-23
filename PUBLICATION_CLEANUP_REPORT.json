@@ -1,0 +1,12 @@
+{
+  "package": "CampusVoice_GitHub_Clean_v1.0",
+  "source_archive": "CampusVoice_4.0(1).zip",
+  "generated_on": "2026-10-11",
+  "changes": [
+    "Removed .env files from the extracted publication copy",
+    "Removed Python caches/bytecode, node_modules/build outputs and nested zip archives",
+    "Added .gitignore and placeholder .env.example files when absent",
+    "Removed reset/setup/seed script(s) flagged by simple hardcoded-credential pattern scan"
+  ],
+  "caveat": "This is a repository-cleanup pass, not a guarantee that all secrets are absent. Review all files and Git history before public release."
+}

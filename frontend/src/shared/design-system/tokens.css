@@ -1,0 +1,102 @@
+:root {
+  /* ─────────────────────────────────────────────
+     CampusVoice Design Tokens
+     Values are RGB channels so Tailwind can support
+     opacity modifiers when needed.
+     ───────────────────────────────────────────── */
+
+  /* Surfaces */
+  --cv-bg: 247 244 239;
+  --cv-surface: 255 253 249;
+  --cv-surface-soft: 250 248 246;
+  --cv-surface-muted: 244 240 235;
+
+  /* Text */
+  --cv-text: 48 43 49;
+  --cv-text-secondary: 95 86 98;
+  --cv-text-muted: 117 104 121;
+  --cv-text-subtle: 157 147 138;
+  --cv-text-inverse: 255 255 255;
+
+  /* Brand */
+  --cv-primary: 124 106 134;
+  --cv-primary-hover: 112 95 122;
+  --cv-primary-soft: 243 237 245;
+  --cv-primary-border: 216 203 221;
+
+  /* Borders */
+  --cv-border: 233 225 218;
+  --cv-border-strong: 225 218 213;
+  --cv-divider: 238 232 226;
+
+  /* Semantic */
+  --cv-success: 91 184 137;
+  --cv-success-soft: 237 248 242;
+  --cv-warning: 217 158 67;
+  --cv-warning-soft: 252 245 231;
+  --cv-danger: 199 92 99;
+  --cv-danger-soft: 251 238 239;
+  --cv-info: 82 137 194;
+  --cv-info-soft: 237 245 252;
+
+  /* Accent */
+  --cv-accent: 244 178 140;
+  --cv-accent-soft: 253 242 236;
+
+
+  /* Category accents — intentionally stable across themes */
+  --cv-category-purple: 128 106 168;
+  --cv-category-purple-soft: 246 242 252;
+  --cv-category-green: 47 167 122;
+  --cv-category-green-soft: 237 248 243;
+  --cv-category-blue: 91 126 219;
+  --cv-category-blue-soft: 239 244 253;
+  --cv-category-pink: 214 108 155;
+  --cv-category-pink-soft: 252 239 245;
+  --cv-category-amber: 217 154 61;
+  --cv-category-amber-soft: 253 246 233;
+
+  /* Shape */
+  --cv-radius-sm: 10px;
+  --cv-radius-md: 14px;
+  --cv-radius-lg: 18px;
+  --cv-radius-xl: 24px;
+  --cv-radius-2xl: 28px;
+
+  /* Motion */
+  --cv-duration-fast: 150ms;
+  --cv-duration-normal: 220ms;
+  --cv-duration-slow: 320ms;
+  --cv-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Shadows */
+  --cv-shadow-xs: 0 1px 3px rgb(54 43 58 / 0.035);
+  --cv-shadow-sm: 0 3px 14px rgb(54 43 58 / 0.04);
+  --cv-shadow-md: 0 4px 18px rgb(54 43 58 / 0.06);
+  --cv-shadow-lg: 0 16px 40px rgb(54 43 58 / 0.08);
+  --cv-shadow-card: 0 4px 20px rgb(54 43 58 / 0.045);
+}
+
+html {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgb(var(--cv-primary) / 0.18);
+  color: rgb(var(--cv-text));
+}

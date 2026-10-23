@@ -1,0 +1,139 @@
+/* Legacy CSS fallback definitions retained for compatibility.
+   Source of truth for runtime themes is themeRegistry.js.
+   setTheme() applies registry variables directly, so adding a theme only requires
+   one registry entry; React components never need to be edited.
+*/
+
+/* CampusVoice themes.
+   Change the active theme with:
+   document.documentElement.dataset.theme = "sage"
+   or "lavender", "ocean", "rose", "midnight".
+*/
+
+:root,
+[data-theme="lavender"] {
+  --cv-bg: 247 244 239;
+  --cv-surface: 255 253 249;
+  --cv-surface-soft: 250 248 246;
+  --cv-surface-muted: 244 240 235;
+
+  --cv-text: 48 43 49;
+  --cv-text-secondary: 95 86 98;
+  --cv-text-muted: 117 104 121;
+  --cv-text-subtle: 157 147 138;
+
+  --cv-primary: 124 106 134;
+  --cv-primary-hover: 112 95 122;
+  --cv-primary-soft: 243 237 245;
+  --cv-primary-border: 216 203 221;
+
+  --cv-border: 233 225 218;
+  --cv-border-strong: 225 218 213;
+  --cv-divider: 238 232 226;
+
+  --cv-accent: 244 178 140;
+  --cv-accent-soft: 253 242 236;
+}
+
+[data-theme="sage"] {
+  --cv-bg: 247 243 238;
+  --cv-surface: 255 252 248;
+  --cv-surface-soft: 249 247 242;
+  --cv-surface-muted: 242 239 233;
+
+  --cv-text: 45 58 46;
+  --cv-text-secondary: 91 101 89;
+  --cv-text-muted: 122 142 118;
+  --cv-text-subtle: 165 157 148;
+
+  --cv-primary: 139 175 135;
+  --cv-primary-hover: 107 140 104;
+  --cv-primary-soft: 239 246 237;
+  --cv-primary-border: 198 213 194;
+
+  --cv-border: 226 224 216;
+  --cv-border-strong: 211 216 207;
+  --cv-divider: 234 235 228;
+
+  --cv-accent: 196 172 155;
+  --cv-accent-soft: 247 240 235;
+}
+
+[data-theme="ocean"] {
+  --cv-bg: 243 247 249;
+  --cv-surface: 253 255 255;
+  --cv-surface-soft: 246 250 252;
+  --cv-surface-muted: 237 244 247;
+
+  --cv-text: 34 48 55;
+  --cv-text-secondary: 78 96 105;
+  --cv-text-muted: 91 125 139;
+  --cv-text-subtle: 143 160 168;
+
+  --cv-primary: 78 137 157;
+  --cv-primary-hover: 60 111 130;
+  --cv-primary-soft: 232 244 248;
+  --cv-primary-border: 190 218 227;
+
+  --cv-border: 220 231 235;
+  --cv-border-strong: 207 223 228;
+  --cv-divider: 231 238 241;
+
+  --cv-accent: 121 174 185;
+  --cv-accent-soft: 235 246 248;
+}
+
+[data-theme="rose"] {
+  --cv-bg: 249 245 245;
+  --cv-surface: 255 252 252;
+  --cv-surface-soft: 251 247 247;
+  --cv-surface-muted: 245 239 240;
+
+  --cv-text: 59 45 49;
+  --cv-text-secondary: 103 82 88;
+  --cv-text-muted: 139 108 117;
+  --cv-text-subtle: 166 145 149;
+
+  --cv-primary: 164 112 125;
+  --cv-primary-hover: 140 91 105;
+  --cv-primary-soft: 248 237 240;
+  --cv-primary-border: 226 204 210;
+
+  --cv-border: 235 222 225;
+  --cv-border-strong: 224 208 212;
+  --cv-divider: 241 230 232;
+
+  --cv-accent: 207 153 132;
+  --cv-accent-soft: 250 240 235;
+}
+
+[data-theme="midnight"] {
+  color-scheme: dark;
+
+  --cv-bg: 27 25 31;
+  --cv-surface: 35 32 40;
+  --cv-surface-soft: 42 39 48;
+  --cv-surface-muted: 48 44 54;
+
+  --cv-text: 245 241 246;
+  --cv-text-secondary: 205 198 208;
+  --cv-text-muted: 166 154 171;
+  --cv-text-subtle: 132 121 137;
+  --cv-text-inverse: 27 25 31;
+
+  --cv-primary: 174 151 187;
+  --cv-primary-hover: 194 173 204;
+  --cv-primary-soft: 63 52 70;
+  --cv-primary-border: 91 75 101;
+
+  --cv-border: 70 64 75;
+  --cv-border-strong: 84 76 90;
+  --cv-divider: 61 56 66;
+
+  --cv-accent: 244 178 140;
+  --cv-accent-soft: 70 49 41;
+}
+
+[data-theme="midnight"] body {
+  background: rgb(var(--cv-bg));
+}

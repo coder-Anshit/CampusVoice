@@ -1,0 +1,149 @@
+/* CampusVoice Appearance Engine
+   Shape, depth, density and border preferences live here.
+   Color themes remain owned by themeRegistry.js. */
+
+:root {
+  --cv-radius-card: 14px;
+  --cv-radius-panel: 14px;
+  --cv-radius-control: 10px;
+  --cv-radius-pill: 999px;
+  --cv-shadow-card: 0 2px 8px rgb(0 0 0 / 0.05);
+  --cv-shadow-panel: 0 1px 5px rgb(0 0 0 / 0.04);
+  --cv-shadow-popover: 0 12px 30px rgb(0 0 0 / 0.12);
+  --cv-density-scale: 1;
+  --cv-border-width: 1px;
+  --cv-border-opacity: 1;
+}
+
+/* Semantic CampusVoice primitives */
+.cv-card {
+  border-radius: var(--cv-radius-card);
+  box-shadow: var(--cv-shadow-card);
+}
+
+.cv-panel {
+  border-radius: var(--cv-radius-panel);
+  box-shadow: var(--cv-shadow-panel);
+}
+
+.cv-control {
+  border-radius: var(--cv-radius-control);
+}
+
+.cv-pill {
+  border-radius: var(--cv-radius-pill);
+}
+
+.cv-popover {
+  border-radius: var(--cv-radius-panel);
+  box-shadow: var(--cv-shadow-popover);
+}
+
+/* Existing semantic Tailwind aliases already used throughout CampusVoice. */
+.rounded-cv-sm { border-radius: var(--cv-radius-control) !important; }
+.rounded-cv-md { border-radius: var(--cv-radius-control) !important; }
+.rounded-cv-lg { border-radius: var(--cv-radius-panel) !important; }
+.rounded-cv-xl { border-radius: var(--cv-radius-card) !important; }
+
+.shadow-cv-sm { box-shadow: var(--cv-shadow-panel) !important; }
+.shadow-cv-md { box-shadow: var(--cv-shadow-card) !important; }
+.shadow-cv-lg { box-shadow: var(--cv-shadow-popover) !important; }
+
+/* Density affects semantic controls without changing layout logic. */
+[data-cv-density="compact"] .cv-control,
+[data-cv-density="compact"] .cv-card,
+[data-cv-density="compact"] .cv-panel {
+  --cv-density-factor: 0.88;
+}
+
+[data-cv-density="comfortable"] .cv-control,
+[data-cv-density="comfortable"] .cv-card,
+[data-cv-density="comfortable"] .cv-panel {
+  --cv-density-factor: 1;
+}
+
+[data-cv-density="spacious"] .cv-control,
+[data-cv-density="spacious"] .cv-card,
+[data-cv-density="spacious"] .cv-panel {
+  --cv-density-factor: 1.12;
+}
+
+/* Border preference applies to the semantic border utility already used by CampusVoice. */
+.border-cv-border {
+  border-width: var(--cv-border-width) !important;
+  border-color: color-mix(in srgb, rgb(var(--cv-border)) calc(var(--cv-border-opacity) * 100%), transparent) !important;
+}
+
+.cv-card,
+.cv-panel,
+.cv-control {
+  border-width: var(--cv-border-width);
+  border-color: color-mix(in srgb, rgb(var(--cv-border)) calc(var(--cv-border-opacity) * 100%), transparent);
+}
+
+/* Density gives semantic primitives a real spacing change without rewriting component logic. */
+.cv-card,
+.cv-panel {
+  padding: calc(1rem * var(--cv-density-scale));
+}
+
+.cv-control {
+  min-height: calc(2.5rem * var(--cv-density-scale));
+}
+
+/* -------------------------------------------------------------------------
+   ADMIN PANEL BRIDGE
+   The admin panel still contains legacy Tailwind radius/shadow utilities.
+   Scope the bridge so Appearance controls affect that surface without
+   changing unrelated legacy screens.
+--------------------------------------------------------------------------- */
+
+.cv-admin-shell .rounded-sm,
+.cv-admin-shell .rounded-md {
+  border-radius: var(--cv-radius-control) !important;
+}
+
+.cv-admin-shell .rounded-lg {
+  border-radius: var(--cv-radius-panel) !important;
+}
+
+.cv-admin-shell .rounded-xl,
+.cv-admin-shell .rounded-2xl,
+.cv-admin-shell .rounded-3xl {
+  border-radius: var(--cv-radius-card) !important;
+}
+
+.cv-admin-shell .shadow-sm {
+  box-shadow: var(--cv-shadow-panel) !important;
+}
+
+.cv-admin-shell .shadow-md,
+.cv-admin-shell .shadow-lg {
+  box-shadow: var(--cv-shadow-card) !important;
+}
+
+.cv-admin-shell .shadow-xl,
+.cv-admin-shell .shadow-2xl {
+  box-shadow: var(--cv-shadow-popover) !important;
+}
+
+.cv-admin-shell .border {
+  border-width: var(--cv-border-width) !important;
+}
+
+/* Density: scale spacing on the major admin content surfaces. */
+.cv-admin-shell {
+  --cv-admin-density-gap: calc(1rem * var(--cv-density-scale));
+}
+
+.cv-admin-shell main {
+  gap: var(--cv-admin-density-gap);
+}
+
+[data-cv-density="compact"] .cv-admin-shell main {
+  --cv-admin-density-gap: 0.75rem;
+}
+
+[data-cv-density="spacious"] .cv-admin-shell main {
+  --cv-admin-density-gap: 1.25rem;
+}

@@ -1,0 +1,588 @@
+/* CampusVoice responsive/mobile foundation */
+:root {
+  --cv-mobile-gutter: 16px;
+  --cv-mobile-gutter-lg: 20px;
+  --cv-mobile-section-gap: 24px;
+  --cv-mobile-content-gap: 16px;
+  --cv-mobile-card-gap: 12px;
+  --cv-touch-target-min: 44px;
+  --cv-control-height: 48px;
+  --cv-control-height-lg: 52px;
+  --cv-mobile-card-padding: 16px;
+  --cv-mobile-card-padding-compact: 12px;
+  --cv-rail-gap: 12px;
+  --cv-rail-card-width: 280px;
+  --cv-bottom-nav-height: 64px;
+  --cv-mobile-header-height: 60px;
+  --cv-content-max-width: 1280px;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.cv-mobile-only { display: none; }
+.cv-desktop-only { display: block; }
+
+.cv-mobile-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+.cv-horizontal-rail {
+  display: flex;
+  gap: var(--cv-rail-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  padding-inline: 1px;
+}
+
+.cv-horizontal-rail::-webkit-scrollbar { display: none; }
+.cv-horizontal-rail > * { flex: 0 0 var(--cv-rail-card-width); scroll-snap-align: start; }
+
+.cv-touch-target {
+  min-width: var(--cv-touch-target-min);
+  min-height: var(--cv-touch-target-min);
+}
+
+.cv-mobile-safe-top { padding-top: env(safe-area-inset-top); }
+.cv-mobile-safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+
+@media (max-width: 767px) {
+  .cv-mobile-only { display: block; }
+  .cv-desktop-only { display: none !important; }
+
+  body { min-width: 320px; }
+
+  .cv-mobile-page {
+    min-height: 100dvh;
+    padding-bottom: calc(var(--cv-bottom-nav-height) + env(safe-area-inset-bottom) + 16px);
+  }
+
+  .cv-mobile-main {
+    width: 100%;
+    max-width: var(--cv-content-max-width);
+    margin-inline: auto;
+    padding-inline: var(--cv-mobile-gutter);
+  }
+
+  .cv-mobile-card { padding: var(--cv-mobile-card-padding); }
+
+  .cv-mobile-control {
+    min-height: var(--cv-control-height);
+  }
+}
+
+@media (min-width: 390px) and (max-width: 767px) {
+  :root { --cv-mobile-gutter: var(--cv-mobile-gutter-lg); }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root { --cv-mobile-gutter: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   MOBILE DESIGN-SYSTEM PRIMITIVES
+   These classes are intentionally token-driven so mobile components inherit
+   the active CampusVoice theme, shape, depth, density and border settings.
+--------------------------------------------------------------------------- */
+
+.cv-mobile-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cv-mobile-content-gap);
+}
+
+.cv-mobile-section + .cv-mobile-section {
+  margin-top: var(--cv-mobile-section-gap);
+}
+
+.cv-mobile-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cv-mobile-section-title {
+  margin: 0;
+  color: rgb(var(--cv-text));
+  font-size: 1rem;
+  line-height: 1.25;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.cv-mobile-section-subtitle {
+  margin: 4px 0 0;
+  color: rgb(var(--cv-text-muted));
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+
+.cv-mobile-card {
+  width: 100%;
+  background: rgb(var(--cv-surface));
+  color: rgb(var(--cv-text));
+  border: var(--cv-border-width) solid color-mix(in srgb, rgb(var(--cv-border)) calc(var(--cv-border-opacity) * 100%), transparent);
+  overflow: hidden;
+}
+
+.cv-mobile-card-md { padding: var(--cv-mobile-card-padding); }
+.cv-mobile-card-sm { padding: var(--cv-mobile-card-padding-compact); }
+
+.cv-mobile-card-interactive {
+  cursor: pointer;
+  transition: transform var(--cv-duration-fast) var(--cv-ease), box-shadow var(--cv-duration-fast) var(--cv-ease);
+}
+
+@media (hover: hover) {
+  .cv-mobile-card-interactive:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.cv-mobile-button {
+  display: inline-flex;
+  min-width: var(--cv-touch-target-min);
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: var(--cv-border-width) solid transparent;
+  border-radius: var(--cv-radius-control);
+  font-weight: 750;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--cv-duration-fast) var(--cv-ease), background-color var(--cv-duration-fast) ease, opacity var(--cv-duration-fast) ease;
+}
+
+.cv-mobile-button:active:not(:disabled) { transform: scale(0.98); }
+.cv-mobile-button:disabled { cursor: not-allowed; opacity: 0.55; }
+.cv-mobile-button-full { width: 100%; }
+.cv-mobile-button-sm { min-height: 40px; padding: 0 12px; font-size: 0.75rem; }
+.cv-mobile-button-md { min-height: var(--cv-control-height); padding: 0 16px; font-size: 0.875rem; }
+.cv-mobile-button-lg { min-height: var(--cv-control-height-lg); padding: 0 18px; font-size: 0.9375rem; }
+
+.cv-mobile-button-primary { background: rgb(var(--cv-primary)); color: rgb(var(--cv-text-inverse)); }
+.cv-mobile-button-secondary { background: rgb(var(--cv-surface-soft)); color: rgb(var(--cv-text)); border-color: rgb(var(--cv-border)); }
+.cv-mobile-button-ghost { background: transparent; color: rgb(var(--cv-primary)); }
+.cv-mobile-button-danger { background: rgb(var(--cv-danger-soft)); color: rgb(var(--cv-danger)); border-color: rgb(var(--cv-danger) / 0.18); }
+
+.cv-mobile-button:focus-visible,
+.cv-mobile-card-interactive:focus-visible,
+.cv-mobile-rail:focus-visible {
+  outline: 3px solid rgb(var(--cv-primary) / 0.28);
+  outline-offset: 2px;
+}
+
+.cv-mobile-badge {
+  display: inline-flex;
+  min-height: 24px;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  border-radius: var(--cv-radius-pill);
+  padding: 0 9px;
+  font-size: 0.6875rem;
+  line-height: 1;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.cv-mobile-badge-dot { width: 6px; height: 6px; flex: 0 0 6px; border-radius: 999px; background: currentColor; }
+.cv-mobile-badge-neutral { background: rgb(var(--cv-surface-muted)); color: rgb(var(--cv-text-secondary)); }
+.cv-mobile-badge-primary { background: rgb(var(--cv-primary-soft)); color: rgb(var(--cv-primary)); }
+.cv-mobile-badge-success { background: rgb(var(--cv-success-soft)); color: rgb(var(--cv-success)); }
+.cv-mobile-badge-warning { background: rgb(var(--cv-warning-soft)); color: rgb(var(--cv-warning)); }
+.cv-mobile-badge-danger { background: rgb(var(--cv-danger-soft)); color: rgb(var(--cv-danger)); }
+.cv-mobile-badge-info { background: rgb(var(--cv-info-soft)); color: rgb(var(--cv-info)); }
+
+.cv-mobile-empty-state {
+  display: flex;
+  min-height: 180px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  text-align: center;
+  border: var(--cv-border-width) dashed rgb(var(--cv-border));
+  border-radius: var(--cv-radius-card);
+  background: rgb(var(--cv-surface-soft));
+}
+
+.cv-mobile-empty-icon {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border-radius: var(--cv-radius-card);
+  background: rgb(var(--cv-primary-soft));
+  color: rgb(var(--cv-primary));
+}
+
+.cv-mobile-empty-title { margin: 0; color: rgb(var(--cv-text)); font-size: 0.9375rem; font-weight: 750; }
+.cv-mobile-empty-description { max-width: 300px; margin: 6px 0 0; color: rgb(var(--cv-text-muted)); font-size: 0.8125rem; line-height: 1.5; }
+
+.cv-mobile-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgb(var(--cv-surface-muted));
+  border-radius: var(--cv-radius-control);
+}
+
+.cv-mobile-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(var(--cv-text-inverse) / 0.32), transparent);
+  animation: cv-mobile-skeleton-shimmer 1.35s infinite;
+}
+
+.cv-mobile-skeleton-card { height: 128px; }
+.cv-mobile-skeleton-line { height: 12px; }
+.cv-mobile-skeleton-avatar { width: 40px; height: 40px; border-radius: 999px; }
+
+.cv-mobile-rail {
+  margin-inline: calc(var(--cv-mobile-gutter) * -1);
+  padding-inline: var(--cv-mobile-gutter);
+}
+
+@keyframes cv-mobile-skeleton-shimmer {
+  100% { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-mobile-card-interactive,
+  .cv-mobile-button { transition: none; }
+  .cv-mobile-skeleton::after { animation: none; }
+}
+
+
+/* Phase 10.4 — mobile header/search surface */
+.cv-mobile-search-panel {
+  max-height: min(68vh, 560px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cv-mobile-search-panel button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 359px) {
+  .cv-mobile-search-panel { padding-inline: 12px; }
+}
+
+.cv-mobile-spinner {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 999px;
+  animation: cv-mobile-spin 0.7s linear infinite;
+}
+
+@keyframes cv-mobile-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-mobile-spinner { animation: none; }
+}
+
+/* -------------------------------------------------------------------------
+   PHASE 10.15 — TOUCH / GESTURE INTERACTION
+--------------------------------------------------------------------------- */
+.cv-mobile-gesture-surface {
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cv-mobile-ptr { width: 100%; }
+.cv-mobile-ptr-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: rgb(var(--cv-text-muted));
+  font-size: 0.6875rem;
+  font-weight: 750;
+  transition: height 120ms ease, opacity 120ms ease;
+}
+
+.cv-mobile-long-press {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-mobile-ptr-indicator { transition: none; }
+}
+
+/* -------------------------------------------------------------------------
+   PHASE 10.16 — ACCESSIBILITY + RESPONSIVE QA
+--------------------------------------------------------------------------- */
+.cv-mobile-skip-link {
+  position: fixed;
+  left: 12px;
+  top: 8px;
+  z-index: 10000;
+  transform: translateY(-180%);
+  padding: 10px 14px;
+  border-radius: var(--cv-radius-control);
+  background: rgb(var(--cv-surface));
+  color: rgb(var(--cv-text));
+  border: 2px solid rgb(var(--cv-primary));
+  box-shadow: var(--cv-shadow-lg);
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.cv-mobile-skip-link:focus {
+  transform: translateY(0);
+}
+
+.cv-mobile-live-region {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.cv-mobile-page,
+.cv-mobile-page * {
+  box-sizing: border-box;
+}
+
+.cv-mobile-page button,
+.cv-mobile-page [role="button"],
+.cv-mobile-page a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cv-mobile-page button:focus-visible,
+.cv-mobile-page [role="button"]:focus-visible,
+.cv-mobile-page a:focus-visible,
+.cv-mobile-page input:focus-visible,
+.cv-mobile-page textarea:focus-visible,
+.cv-mobile-page select:focus-visible {
+  outline: 3px solid rgb(var(--cv-primary) / 0.38);
+  outline-offset: 2px;
+}
+
+.cv-mobile-page img,
+.cv-mobile-page svg,
+.cv-mobile-page video,
+.cv-mobile-page canvas {
+  max-width: 100%;
+}
+
+.cv-mobile-page img,
+.cv-mobile-page video {
+  height: auto;
+}
+
+.cv-mobile-page p,
+.cv-mobile-page h1,
+.cv-mobile-page h2,
+.cv-mobile-page h3,
+.cv-mobile-page h4,
+.cv-mobile-page h5,
+.cv-mobile-page h6,
+.cv-mobile-page span,
+.cv-mobile-page a,
+.cv-mobile-page button,
+.cv-mobile-page label {
+  overflow-wrap: anywhere;
+}
+
+.cv-mobile-page input,
+.cv-mobile-page textarea,
+.cv-mobile-page select {
+  max-width: 100%;
+  font: inherit;
+}
+
+/* Controls smaller than 44px are visually allowed, but their interactive hit
+   area is expanded through padding where the component permits it. */
+.cv-mobile-page input[type="checkbox"],
+.cv-mobile-page input[type="radio"] {
+  min-width: 20px;
+  min-height: 20px;
+  accent-color: rgb(var(--cv-primary));
+}
+
+@media (max-width: 359px) {
+  .cv-mobile-main {
+    padding-inline: 12px;
+  }
+
+  .cv-mobile-page .cv-mobile-section-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cv-mobile-page .cv-mobile-section-header > :last-child {
+    align-self: flex-start;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 389px) {
+  .cv-mobile-main { padding-inline: 16px; }
+}
+
+@media (min-width: 390px) and (max-width: 767px) {
+  .cv-mobile-main { padding-inline: 20px; }
+}
+
+@media (orientation: landscape) and (max-width: 767px) {
+  .cv-mobile-page {
+    min-height: 100svh;
+  }
+
+  .cv-mobile-page .cv-mobile-search-panel {
+    max-height: 55svh;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .cv-mobile-only { display: none !important; }
+}
+
+/* Respect system high-contrast / forced-colors modes without relying on
+   CampusVoice theme variables for essential focus and state communication. */
+@media (forced-colors: active) {
+  .cv-mobile-page button:focus-visible,
+  .cv-mobile-page [role="button"]:focus-visible,
+  .cv-mobile-page a:focus-visible,
+  .cv-mobile-page input:focus-visible,
+  .cv-mobile-page textarea:focus-visible,
+  .cv-mobile-page select:focus-visible,
+  .cv-mobile-skip-link:focus {
+    outline: 3px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  .cv-mobile-page button,
+  .cv-mobile-page a {
+    forced-color-adjust: auto;
+  }
+}
+
+/* Do not clip keyboard focus when the viewport is zoomed or text is enlarged. */
+@media (max-width: 767px) {
+  .cv-mobile-main {
+    overflow-x: clip;
+  }
+
+  .cv-mobile-page :where(table) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-mobile-skip-link {
+    transition: none !important;
+  }
+}
+
+
+/* Phase 10.17 — performance-friendly loading primitives. Keep these lightweight
+   so the fallback itself never becomes a meaningful part of the initial bundle. */
+.cv-mobile-performance-fallback {
+  min-height: 40vh;
+  padding: 16px;
+}
+.cv-mobile-performance-fallback__bar,
+.cv-mobile-performance-fallback__card,
+.cv-mobile-performance-fallback__line {
+  background: var(--cv-surface, #fff);
+  border-radius: var(--cv-radius-md, 12px);
+}
+.cv-mobile-performance-fallback__bar {
+  width: 42%;
+  height: 18px;
+  margin-bottom: 16px;
+  opacity: .72;
+}
+.cv-mobile-performance-fallback__card {
+  min-height: 120px;
+  padding: 18px;
+  border: 1px solid var(--cv-border, rgba(0,0,0,.08));
+}
+.cv-mobile-performance-fallback__line {
+  height: 14px;
+  margin-bottom: 12px;
+  opacity: .62;
+}
+.cv-mobile-performance-fallback__line--short { width: 62%; }
+@media (prefers-reduced-motion: no-preference) {
+  .cv-mobile-performance-fallback__bar,
+  .cv-mobile-performance-fallback__line {
+    animation: cv-mobile-loading-pulse 1.4s ease-in-out infinite;
+  }
+}
+@keyframes cv-mobile-loading-pulse {
+  50% { opacity: .32; }
+}
+
+
+.cv-mobile-feature-error {
+  min-height: 48vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+.cv-mobile-feature-error__card {
+  width: min(100%, 420px);
+  padding: 20px;
+  border: 1px solid var(--cv-border, rgba(0,0,0,.08));
+  border-radius: var(--cv-radius-lg, 16px);
+  background: var(--cv-surface, #fff);
+}
+.cv-mobile-feature-error__eyebrow {
+  margin: 0 0 6px;
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  opacity: .65;
+}
+.cv-mobile-feature-error__card h2 { margin: 0 0 8px; }
+.cv-mobile-feature-error__card p:not(.cv-mobile-feature-error__eyebrow) { margin: 0 0 16px; opacity: .78; }
+.cv-mobile-feature-error__card button {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: var(--cv-radius-md, 12px);
+  background: var(--cv-primary, #111);
+  color: var(--cv-on-primary, #fff);
+  font-weight: 700;
+}

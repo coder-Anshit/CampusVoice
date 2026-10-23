@@ -1,0 +1,24 @@
+{
+  "version": "1.1",
+  "source": "CampusVoice_GitHub_Clean_v1.0(1).zip",
+  "changes": [
+    "Added multi_select checkbox question type to feedback form builder and student response renderer",
+    "Added optional maximum selection limit in mobile builder; included equivalent editor controls in desktop question editor component",
+    "Added backend validation for allowed options and max selection count",
+    "Added per-option statistics aggregation for multi-select responses",
+    "Added backend/seed_unfiltered_classroom_survey.py with 22-question The Unfiltered Classroom survey",
+    "Updated README and older seed notes"
+  ],
+  "checks": {
+    "python_files_checked": 50,
+    "python_syntax_errors": [],
+    "seed_question_count_regex": 22,
+    "frontend_build": "NOT RUN: node_modules absent; dependency installation/runtime build not verified",
+    "database_seed": "NOT RUN: requires user-configured MongoDB connection"
+  },
+  "caveats": [
+    "This package is not runtime-certified.",
+    "The survey is seeded as a flat list of questions; section/page breaks are not implemented in this change.",
+    "The form is marked anonymous in its UI metadata, but the existing service retains an internal student identifier for duplicate prevention."
+  ]
+}
